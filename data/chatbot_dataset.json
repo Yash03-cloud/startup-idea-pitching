@@ -1,0 +1,120 @@
+{
+  "intents": [
+    {
+      "id": "greeting",
+      "keywords": ["hello", "hi", "hey", "good morning", "good afternoon", "good evening", "yo", "what's up"],
+      "responses": [
+        "Hello! How can I help you today?",
+        "Hi there! What can I do for you?",
+        "Hey! Looking for pitches, mentors, or investor info?"
+      ]
+    },
+    {
+      "id": "pricing",
+      "keywords": ["price", "pricing", "cost", "how much", "subscription", "fee", "plan", "billing"],
+      "responses": [
+        "Our pricing starts at $9/month. Would you like details on plans?",
+        "We have Free, Pro ($9/mo), and Enterprise plans. Which interests you?",
+        "You can compare plans on the pricing page — want the link?"
+      ]
+    },
+    {
+      "id": "signup",
+      "keywords": ["signup", "sign up", "register", "create account", "join", "create an account"],
+      "responses": [
+        "You can sign up at /signup.html or I can guide you through the process.",
+        "To create an account, click Sign Up and follow the form. Need help filling it?",
+        "I can register you step-by-step — what email would you like to use?"
+      ]
+    },
+    {
+      "id": "features",
+      "keywords": ["feature", "features", "what can", "capability", "can it", "does it"],
+      "responses": [
+        "We offer mentorship matching, pitch reviews, and investor connections.",
+        "Key features: pitch showcase, mentor network, investor introductions.",
+        "We help founders find mentors, prepare pitches, and connect with investors."
+      ]
+    },
+    {
+      "id": "pitch_submission",
+      "keywords": ["pitch", "submit pitch", "submit", "pitch submission", "submit my pitch", "showcase"],
+      "responses": [
+        "To submit a pitch, go to the Pitch -> Submit form or use the submit pitch form on the site.",
+        "You can upload your pitch details via the pitch submission form — need a link?"
+      ]
+    },
+    {
+      "id": "mentors",
+      "keywords": ["mentor", "mentors", "find mentor", "mentorship", "mentor matching"],
+      "responses": [
+        "We match founders with mentors based on industry and stage.",
+        "Tell me your industry and what help you need, and I'll find mentors."
+      ]
+    },
+    {
+      "id": "investors",
+      "keywords": ["investor", "investors", "funding", "raise", "investment", "fund"],
+      "responses": [
+        "We introduce startups to potential investors; share your pitch to get started.",
+        "Investors browse our pitch feed — would you like guidance preparing an intro?"
+      ]
+    },
+    {
+      "id": "contact",
+      "keywords": ["contact", "support", "email", "help", "get in touch", "reach"],
+      "responses": [
+        "You can reach us at contact@example.com or use the contact form on the website.",
+        "For support, visit /contact.html or tell me your issue and I'll escalate it."
+      ]
+    },
+    {
+      "id": "hours",
+      "keywords": ["hours", "open", "working hours", "when are you open", "time"],
+      "responses": [
+        "Our support team is available Monday–Friday, 9am–6pm (local time).",
+        "We're online during business hours — leave a message and we'll reply next business day."
+      ]
+    },
+    {
+      "id": "location",
+      "keywords": ["location", "where", "address", "based", "located"],
+      "responses": [
+        "We're a remote-first team with headquarters in [City]. Visit /about.html for details.",
+        "Our main office is based in [City]. Need directions?"
+      ]
+    },
+    {
+      "id": "demo",
+      "keywords": ["demo", "demo register", "demo day", "demo registration", "register demo"],
+      "responses": [
+        "You can register for the demo at the Demo page or use the demo registration form.",
+        "Fill the demo form and we'll confirm your slot via email."
+      ]
+    },
+    {
+      "id": "thanks",
+      "keywords": ["thanks", "thank you", "thx", "ty"],
+      "responses": [
+        "You're welcome! Glad to help.",
+        "Anytime — let me know if you need anything else."
+      ]
+    },
+    {
+      "id": "goodbye",
+      "keywords": ["bye", "goodbye", "see ya", "see you", "later"],
+      "responses": [
+        "Goodbye — wish you success with your startup!",
+        "Talk soon — feel free to come back with more questions."
+      ]
+    },
+    {
+      "id": "fallback",
+      "keywords": [],
+      "responses": [
+        "Sorry, I didn't understand that. Try asking about 'pricing', 'features', 'signup', or 'pitch'.",
+        "I didn't catch that — try keywords like 'pricing', 'signup', or 'mentors'."
+      ]
+    }
+  ]
+}
