@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MentorVerse – Connect • Learn • Grow</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
+  <link href="https://unpkg.com/aos@2.3.4/dist/aos.css" rel="stylesheet" />
+  <style>
+    body {
+      background: radial-gradient(circle at top, #0f172a, #1e293b 80%);
+      color: #f1f5f9;
+      font-family: 'Inter', sans-serif;
+      scroll-behavior: smooth;
+    }
+    .glass { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(12px); }
+    .gradient-btn { background: linear-gradient(90deg, #14b8a6, #3b82f6); }
+    .gradient-btn:hover { background: linear-gradient(90deg, #22d3ee, #60a5fa); }
+    ::placeholder { color: #9ca3af; }
+    .fadeIn { animation: fadeIn 0.4s ease-in-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  </style>
+</head>
+<body>
+  <!-- NAVBAR -->
+<header class="sticky top-0 z-50 backdrop-blur bg-[#0f172aa8] border-b border-white/10">
+  <div class="max-w-7xl mx-auto flex justify-between items-center px-6 py-4">
+    
+    <!-- Logo -->
+    <h1 class="text-2xl font-bold text-teal-400">MentorVerse</h1>
+
+    <!-- Navigation -->
+    <nav class="space-x-6 hidden md:flex items-center">
+      <a href="#mentors" class="hover:text-teal-400 transition">Mentors</a>
+      <a href="#join" class="hover:text-teal-400 transition">Join</a>
+
+      <!-- Back Button -->
+      <button onclick="window.location.href='index.html'" 
+        class="ml-4 bg-teal-500 hover:bg-teal-600 text-white px-4 py-1.5 rounded-md shadow-md 
+               transition-all duration-300 text-sm font-medium">
+        ← Back
+      </button>
+    </nav>
+
+  </div>
+</header>
+
+
+  <!-- HERO -->
+  <section class="relative text-center py-24 overflow-hidden">
+    <img src="https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200"
+         class="absolute inset-0 w-full h-full object-cover opacity-20" alt="">
+    <div class="relative z-10 max-w-3xl mx-auto">
+      <h2 class="text-5xl font-extrabold mb-4">Empower Your Journey with Expert Mentors 🌟</h2>
+      <p class="text-gray-300 mb-8">From startup strategy to personal growth — find your mentor and level up your success path.</p>
+      <a href="#join" class="gradient-btn text-slate-900 font-semibold px-8 py-3 rounded-lg shadow-lg transition">Get Started</a>
+    </div>
+  </section>
+
+  <!-- MENTORS SECTION -->
+ <section id="mentors" class="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 text-white">
+  <!-- Header -->
+  <div class="flex flex-col sm:flex-row justify-between items-center gap-4 mb-10">
+    <h3 class="text-3xl sm:text-4xl font-bold text-center sm:text-left bg-gradient-to-r from-teal-400 to-blue-500 bg-clip-text text-transparent">
+      Meet Our Mentors
+    </h3>
+    <input 
+      id="searchMentor" 
+      type="text" 
+      placeholder="🔍 Search mentors..." 
+      class="w-full sm:w-80 bg-white/10 border border-white/20 placeholder-gray-400 px-4 py-2 rounded-lg focus:outline-none focus:ring-2 focus:ring-teal-400 transition-all duration-300"
+    >
+  </div>
+
+  <!-- Mentor Grid -->
+  <div id="mentorGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+
+    <!-- Mentor 1 -->
+    <div onclick="openLinkedIn('https://www.linkedin.com/feed/')" 
+         class="cursor-pointer bg-white/5 border border-white/10 rounded-2xl p-4 hover:scale-105 transition-transform duration-300 text-center backdrop-blur-sm hover:bg-white/10">
+      <img src="https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?w=400" 
+           alt="Rohit Mehta" 
+           class="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-2 border-teal-400 shadow-lg">
+      <h4 class="text-lg font-semibold text-teal-300">Rohit Mehta</h4>
+      <p class="text-gray-300 text-sm">Startup Advisor • Angel Investor</p>
+      <p class="text-gray-400 text-xs mt-2">Helps early-stage founders in fundraising and scaling strategies.</p>
+    </div>
+
+    <!-- Mentor 2 -->
+    <div onclick="openLinkedIn('https://www.linkedin.com/feed/')" 
+         class="cursor-pointer bg-white/5 border border-white/10 rounded-2xl p-4 hover:scale-105 transition-transform duration-300 text-center backdrop-blur-sm hover:bg-white/10">
+      <img src="https://images.unsplash.com/photo-1529626455594-4ff0802cfb7e?w=400" 
+           alt="Priya Sharma" 
+           class="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-2 border-teal-400 shadow-lg">
+      <h4 class="text-lg font-semibold text-teal-300">Priya Sharma</h4>
+      <p class="text-gray-300 text-sm">ML Coach • Data Expert</p>
+      <p class="text-gray-400 text-xs mt-2">Specializes in AI-driven analytics and machine learning pipelines.</p>
+    </div>
+
+    <!-- Mentor 3 -->
+    <div onclick="openLinkedIn('https://www.linkedin.com/feed/')" 
+         class="cursor-pointer bg-white/5 border border-white/10 rounded-2xl p-4 hover:scale-105 transition-transform duration-300 text-center backdrop-blur-sm hover:bg-white/10">
+      <img src="https://images.unsplash.com/photo-1524504388940-b1c1722653e1?w=400" 
+           alt="Samir Gupta" 
+           class="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-2 border-teal-400 shadow-lg">
+      <h4 class="text-lg font-semibold text-teal-300">Samir Gupta</h4>
+      <p class="text-gray-300 text-sm">Engineering Mentor • Ex-Google</p>
+      <p class="text-gray-400 text-xs mt-2">Expert in cloud architecture and backend scalability.</p>
+    </div>
+
+  
+    <!-- Mentor 4 -->
+    <div onclick="openLinkedIn('https://www.linkedin.com/feed/')" 
+         class="cursor-pointer bg-white/5 border border-white/10 rounded-2xl p-4 hover:scale-105 transition-transform duration-300 text-center backdrop-blur-sm hover:bg-white/10">
+      <img src="https://images.unsplash.com/photo-1552058544-f2b08422138a?w=400" 
+           alt="Ananya Verma" 
+           class="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-2 border-teal-400 shadow-lg">
+      <h4 class="text-lg font-semibold text-teal-300">Ananya Verma</h4>
+      <p class="text-gray-300 text-sm">Product Strategist • UX Innovator</p>
+      <p class="text-gray-400 text-xs mt-2">Guides startups in user experience, design thinking, and product-market fit.</p>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  // Open LinkedIn in new tab
+  function openLinkedIn(url) {
+    window.open(url, "_blank");
+  }
+</script>
+
+
+  <!-- JOIN FORM -->
+  <section id="join" class="max-w-4xl mx-auto py-20 px-6 text-center">
+    <h3 class="text-3xl font-bold mb-4">Join Our Mentorship Program</h3>
+    <p class="text-gray-400 mb-8">Fill out your details and we’ll match you with a suitable mentor.</p>
+    <form id="leadForm" class="glass p-8 rounded-2xl max-w-lg mx-auto space-y-4">
+      <input type="text" name="name" placeholder="Full Name" class="w-full bg-transparent border border-white/10 rounded px-3 py-2" required>
+      <input type="email" name="email" placeholder="Email" class="w-full bg-transparent border border-white/10 rounded px-3 py-2" required>
+      <input type="text" name="profession" placeholder="Your Profession (e.g., Student, Developer, Founder)" class="w-full bg-transparent border border-white/10 rounded px-3 py-2" required>
+      <select name="goal" 
+  class="w-full bg-gray-800 text-white border border-white/20 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+  required>
+  <option value="">Select your goal</option>
+  <option>Career Growth</option>
+  <option>Startup Guidance</option>
+  <option>Technical Mentorship</option>
+  <option>Leadership Coaching</option>
+</select>
+
+<textarea name="message" 
+  placeholder="Describe your goals..." 
+  rows="4" 
+  class="w-full bg-gray-800 text-white border border-white/20 rounded px-3 py-2 mt-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+
+      <button type="submit" class="gradient-btn w-full py-3 rounded-lg font-semibold text-slate-900 shadow-md">Submit</button>
+    </form>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-white/10 py-6 text-center text-gray-400 text-sm">
+    © 2025 MentorVerse. All rights reserved.
+  </footer>
+
+  <script>
+    // ✅ Form submission to backend
+    document.getElementById("leadForm").addEventListener("submit", async e => {
+      e.preventDefault();
+      const form = e.target;
+      const data = Object.fromEntries(new FormData(form).entries());
+
+      try {
+        const res = await fetch("http://localhost:5000/api/mentor-contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        const result = await res.json();
+        if (result.success) {
+          alert("✅ Submission successful! A mentor will contact you soon.");
+          form.reset();
+        } else {
+          alert("⚠️ Error: " + (result.message || "Try again later."));
+        }
+      } catch (err) {
+        console.error("❌ Could not connect to backend:", err);
+        alert("❌ Could not connect to backend. Ensure server is running.");
+      }
+    });
+  </script>
+</body>
+</html>

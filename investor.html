@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>For Investors - PitchDeck</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    /* Animations */
+    @keyframes bounceIn { 0% { transform: scale(0.5); opacity: 0; } 100% { transform: scale(1); opacity: 1; } }
+    .animate-bounceIn { animation: bounceIn 0.4s ease; }
+    @keyframes fadeInUp { 0% { transform: translateY(20px); opacity: 0; } 100% { transform: translateY(0); opacity: 1; } }
+    .animate-fadeInUp { animation: fadeInUp 0.5s ease forwards; }
+
+    /* Card Hover Effect */
+    .card-hover:hover { transform: translateY(-10px); box-shadow: 0 25px 50px rgba(0,0,0,0.3); transition: all 0.3s ease; }
+
+    /* Modal */
+    .modal { display: none; }
+    .modal.active { display: flex; }
+  </style>
+</head>
+<body class="min-h-screen bg-gray-900 text-white relative overflow-x-hidden">
+
+  <!-- 🔙 Back to Home Button (Top Right Corner) -->
+<a href="index.html" 
+   class="absolute top-6 right-6 bg-purple-600 hover:bg-purple-700 text-white font-medium px-5 py-2 rounded-lg shadow-lg transition-all duration-200 z-20">
+  ← Back to Home
+</a>
+
+
+  <!-- Background Image -->
+  <div class="absolute inset-0">
+    <img src="/image/gradient-network-connection-background_23-2148879890.jpg" 
+         alt="Investors Background" 
+         class="w-full h-full object-cover opacity-70">
+  </div>
+
+  <!-- Overlay -->
+  <div class="absolute inset-0 bg-black/60"></div>
+
+  <!-- Page Content -->
+  <div class="relative z-10 flex flex-col items-center justify-start min-h-screen py-12 px-4">
+
+    <!-- Hero Section -->
+    <header class="text-center mb-12">
+      <h1 class="text-5xl font-bold mb-4 animate-bounceIn">Invest in the Future</h1>
+      <p class="text-xl max-w-3xl mx-auto mb-6">Browse high-potential startups and ideas. Connect with founders to grow your investment portfolio and shape the future of innovation.</p>
+      
+      <!-- Buttons -->
+      <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
+        <button onclick="openCommunityModal()" class="bg-indigo-600 text-white px-8 py-3 rounded-xl font-semibold hover:bg-indigo-700 transition-all">
+          Join Community
+        </button>
+      </div>
+    </header>
+
+    <!-- Investment Cards -->
+    <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-6xl">
+
+       <!-- Card 1 -->
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-xl card-hover animate-fadeInUp">
+    <h2 class="text-2xl font-bold mb-2">Startup Alpha</h2>
+    <p class="mb-4">Connecting local artisans with global markets using blockchain solutions.</p>
+    <div class="mb-4">
+      <h3 class="font-semibold">Founder & Team:</h3>
+      <ol class="list-decimal list-inside">
+        <li>Alice Johnson (CEO)</li>
+        <li>Bob Smith (CTO)</li>
+        <li>Charlie Lee (COO)</li>
+        <li>David Kim (CFO)</li>
+        <li>Eve Williams (Marketing)</li>
+      </ol>
+    </div>
+    <button onclick="openModal('Startup Alpha')" class="bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-800 transition-all">Invest Now</button>
+  </div>
+
+  <!-- Card 2 -->
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-xl card-hover animate-fadeInUp" style="animation-delay:0.2s;">
+    <h2 class="text-2xl font-bold mb-2">GreenTech Hub</h2>
+    <p class="mb-4">Innovating sustainable energy solutions for urban cities and households.</p>
+    <div class="mb-4">
+      <h3 class="font-semibold">Founder & Team:</h3>
+      <ol class="list-decimal list-inside">
+        <li>Frank Miller (CEO)</li>
+        <li>Grace Lee (CTO)</li>
+        <li>Hannah Brown (COO)</li>
+        <li>Ian Wilson (CFO)</li>
+        <li>Jane Doe (Marketing)</li>
+      </ol>
+    </div>
+    <button onclick="openModal('GreenTech Hub')" class="bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-800 transition-all">Invest Now</button>
+  </div>
+
+  <!-- Card 3 -->
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-xl card-hover animate-fadeInUp" style="animation-delay:0.4s;">
+    <h2 class="text-2xl font-bold mb-2">EduConnect</h2>
+    <p class="mb-4">A social platform connecting students and mentors globally for better learning.</p>
+    <div class="mb-4">
+      <h3 class="font-semibold">Founder & Team:</h3>
+      <ol class="list-decimal list-inside">
+        <li>Liam Scott (CEO)</li>
+        <li>Emma Johnson (CTO)</li>
+        <li>Noah Davis (COO)</li>
+        <li>Olivia Martinez (CFO)</li>
+        <li>Ava Wilson (Marketing)</li>
+      </ol>
+    </div>
+    <button onclick="openModal('EduConnect')" class="bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-800 transition-all">Invest Now</button>
+  </div>
+
+  <!-- Card 4 -->
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-xl card-hover animate-fadeInUp" style="animation-delay:0.6s;">
+    <h2 class="text-2xl font-bold mb-2">HealthSync</h2>
+    <p class="mb-4">AI-powered telemedicine platform for personalized virtual healthcare.</p>
+    <div class="mb-4">
+      <h3 class="font-semibold">Founder & Team:</h3>
+      <ol class="list-decimal list-inside">
+        <li>Michael Carter (CEO)</li>
+        <li>Laura Green (CTO)</li>
+        <li>Jason Lee (COO)</li>
+        <li>Anna White (CFO)</li>
+        <li>Tom Adams (Operations)</li>
+      </ol>
+    </div>
+    <button onclick="openModal('HealthSync')" class="bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-800 transition-all">Invest Now</button>
+  </div>
+
+  <!-- Card 5 -->
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-xl card-hover animate-fadeInUp" style="animation-delay:0.8s;">
+    <h2 class="text-2xl font-bold mb-2">FinWise</h2>
+    <p class="mb-4">Smart budgeting and investment tracking app for young professionals.</p>
+    <div class="mb-4">
+      <h3 class="font-semibold">Founder & Team:</h3>
+      <ol class="list-decimal list-inside">
+        <li>Riya Patel (CEO)</li>
+        <li>Neha Singh (CTO)</li>
+        <li>Arjun Das (CFO)</li>
+        <li>Vikram Rao (COO)</li>
+        <li>Sofia Khan (Marketing)</li>
+      </ol>
+    </div>
+    <button onclick="openModal('FinWise')" class="bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-800 transition-all">Invest Now</button>
+  </div>
+
+  <!-- Card 6 -->
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-xl card-hover animate-fadeInUp" style="animation-delay:1s;">
+    <h2 class="text-2xl font-bold mb-2">AgriNext</h2>
+    <p class="mb-4">Revolutionizing agriculture with smart IoT-based farming solutions.</p>
+    <div class="mb-4">
+      <h3 class="font-semibold">Founder & Team:</h3>
+      <ol class="list-decimal list-inside">
+        <li>Rahul Mehta (CEO)</li>
+        <li>Akash Gupta (CTO)</li>
+        <li>Kiran Nair (COO)</li>
+        <li>Deepika Sharma (CFO)</li>
+        <li>Vivek Jain (R&D)</li>
+      </ol>
+    </div>
+    <button onclick="openModal('AgriNext')" class="bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-800 transition-all">Invest Now</button>
+  </div>
+
+  <!-- Card 7 -->
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-xl card-hover animate-fadeInUp" style="animation-delay:1.2s;">
+    <h2 class="text-2xl font-bold mb-2">TravelGo</h2>
+    <p class="mb-4">Personalized AI-based travel planning and experience platform.</p>
+    <div class="mb-4">
+      <h3 class="font-semibold">Founder & Team:</h3>
+      <ol class="list-decimal list-inside">
+        <li>Harsh Agarwal (CEO)</li>
+        <li>Ritu Sen (CTO)</li>
+        <li>Manav Jain (COO)</li>
+        <li>Simran Kaur (CFO)</li>
+        <li>Amit Roy (Product Head)</li>
+      </ol>
+    </div>
+    <button onclick="openModal('TravelGo')" class="bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-800 transition-all">Invest Now</button>
+  </div>
+
+  <!-- Card 8 -->
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-xl card-hover animate-fadeInUp" style="animation-delay:1.4s;">
+    <h2 class="text-2xl font-bold mb-2">SkillForge</h2>
+    <p class="mb-4">Upskilling platform offering live mentorship and career transformation.</p>
+    <div class="mb-4">
+      <h3 class="font-semibold">Founder & Team:</h3>
+      <ol class="list-decimal list-inside">
+        <li>Aditi Rao (CEO)</li>
+        <li>Mohit Bansal (CTO)</li>
+        <li>Rohan Kapoor (COO)</li>
+        <li>Kavya Menon (CFO)</li>
+        <li>Varun Pillai (Education Lead)</li>
+      </ol>
+    </div>
+    <button onclick="openModal('SkillForge')" class="bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-800 transition-all">Invest Now</button>
+  </div>
+
+  <!-- Card 9 -->
+  <div class="bg-white/10 backdrop-blur-lg rounded-3xl p-6 shadow-xl card-hover animate-fadeInUp" style="animation-delay:1.6s;">
+    <h2 class="text-2xl font-bold mb-2">FoodBuddy</h2>
+    <p class="mb-4">AI-driven meal planner and local food discovery app for urban users.</p>
+    <div class="mb-4">
+      <h3 class="font-semibold">Founder & Team:</h3>
+      <ol class="list-decimal list-inside">
+        <li>Sneha Kapoor (CEO)</li>
+        <li>Arnav Patel (CTO)</li>
+        <li>Krish Iyer (COO)</li>
+        <li>Isha Jain (CFO)</li>
+        <li>Tara Desai (Marketing)</li>
+      </ol>
+    </div>
+    <button onclick="openModal('FoodBuddy')" class="bg-purple-700 text-white px-4 py-2 rounded-lg font-semibold hover:bg-purple-800 transition-all">Invest Now</button>
+  </div>
+
+    </section>
+
+    <!-- 📊 Analytics & Insights Section -->
+    <section id="analytics" class="relative z-10 w-full max-w-5xl mx-auto my-16 p-8 bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl">
+      <h2 class="text-4xl font-bold mb-6 text-center">📊 Analytics & Insights</h2>
+      <p class="text-lg text-gray-300 text-center mb-8">
+        Evaluate startup performance metrics and track investment progress visually.
+      </p>
+
+      <!-- Chart Container -->
+      <div class="bg-white rounded-2xl p-6">
+        <canvas id="investmentChart" class="w-full h-96"></canvas>
+      </div>
+    </section>
+
+    <!-- Invest Form Modal -->
+    <div id="investModal" class="modal fixed inset-0 items-center justify-center bg-black/70">
+      <div class="bg-white rounded-3xl p-8 max-w-lg w-full relative text-black">
+        <button onclick="closeModal()" class="absolute top-4 right-4 text-xl font-bold">&times;</button>
+        <h2 id="modalTitle" class="text-3xl font-bold mb-4">Invest in Startup</h2>
+        <form id="investForm" class="space-y-4">
+          <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+          <input type="email" placeholder="Email Address" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+          <input type="number" placeholder="Investment Amount ($)" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500" required>
+          <textarea placeholder="Message / Notes" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-purple-500"></textarea>
+          <button type="submit" class="w-full bg-green-600 text-white py-3 rounded-lg font-semibold hover:bg-green-700 transition-all">Submit Investment</button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Join Community Modal -->
+    <div id="communityModal" class="modal fixed inset-0 items-center justify-center bg-black/70">
+      <div class="bg-white rounded-3xl p-8 max-w-lg w-full relative text-black">
+        <button onclick="closeCommunityModal()" class="absolute top-4 right-4 text-xl font-bold">&times;</button>
+        <h2 class="text-3xl font-bold mb-4">Join Our Community</h2>
+        <form id="communityForm" class="space-y-4">
+          <input type="text" placeholder="Your Name" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+          <input type="email" placeholder="Email Address" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500" required>
+          <input type="text" placeholder="Organization / Role (Optional)" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <textarea placeholder="Why do you want to join?" class="w-full p-3 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+          <button type="submit" class="w-full bg-indigo-600 text-white py-3 rounded-lg font-semibold hover:bg-indigo-700 transition-all">Join Now</button>
+        </form>
+      </div>
+    </div>
+
+  </div>
+
+  
+
+<script>
+  // ----------------- MODALS -----------------
+  const modal = document.getElementById('investModal');
+  const modalTitle = document.getElementById('modalTitle');
+  const communityModal = document.getElementById('communityModal');
+
+  function openModal(startupName) {
+    modalTitle.innerText = `Invest in ${startupName}`;
+    modal.classList.add('active');
+  }
+
+  function closeModal() {
+    modal.classList.remove('active');
+  }
+
+  function openCommunityModal() {
+    communityModal.classList.add('active');
+  }
+
+  function closeCommunityModal() {
+    communityModal.classList.remove('active');
+  }
+
+  // ----------------- INVEST FORM -----------------
+  const investForm = document.getElementById('investForm');
+  investForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+
+    const data = {
+      startupName: modalTitle.innerText.replace("Invest in ", ""),
+      name: this[0].value,
+      email: this[1].value,
+      amount: this[2].value,
+      message: this[3].value
+    };
+
+    try {
+      const response = await fetch('/api/invest', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      if(result.success){
+        alert(result.message);
+        closeModal();
+        this.reset();
+      } else {
+        alert("❌ " + result.message);
+      }
+    } catch(err) {
+      console.error(err);
+      alert("❌ Error submitting investment");
+    }
+  });
+
+  // ----------------- COMMUNITY FORM -----------------
+  const communityForm = document.getElementById('communityForm');
+  communityForm.addEventListener('submit', async function(e){
+    e.preventDefault();
+
+    const data = {
+      name: this[0].value,
+      email: this[1].value,
+      organization: this[2].value,
+      reason: this[3].value
+    };
+
+    try {
+      const response = await fetch('/api/community', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      const result = await response.json();
+      if(result.success){
+        alert(result.message);
+        closeCommunityModal();
+        this.reset();
+      } else {
+        alert("❌ " + result.message);
+      }
+    } catch(err) {
+      console.error(err);
+      alert("❌ Error joining community");
+    }
+  });
+
+  // ----------------- ANALYTICS CHART -----------------
+  const ctx = document.getElementById('investmentChart').getContext('2d');
+  new Chart(ctx, {
+    type: 'bar',
+    data: {
+      labels: ['Startup Alpha', 'GreenTech Hub', 'EduConnect', 'Healthify', 'AgriSmart'],
+      datasets: [{
+        label: 'Total Investments ($ in Thousands)',
+        data: [80, 120, 60, 90, 150],
+        backgroundColor: [
+          'rgba(99, 102, 241, 0.7)',
+          'rgba(34, 197, 94, 0.7)',
+          'rgba(244, 114, 182, 0.7)',
+          'rgba(251, 191, 36, 0.7)',
+          'rgba(147, 51, 234, 0.7)'
+        ],
+        borderRadius: 12,
+        borderWidth: 1
+      }]
+    },
+    options: {
+      responsive: true,
+      plugins: {
+        legend: { display: true, labels: { color: '#000' } },
+        title: { display: false }
+      },
+      scales: {
+        x: { ticks: { color: '#000' }, grid: { color: 'rgba(0,0,0,0.1)' } },
+        y: { ticks: { color: '#000' }, grid: { color: 'rgba(0,0,0,0.1)' } }
+      }
+    }
+  });
+</script>
+
+</body>
+</html>

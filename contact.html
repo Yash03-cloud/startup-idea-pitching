@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact - PitchHub</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Background Animation */
+    body {
+      background: radial-gradient(circle at 20% 30%, #1a1a40, #0d0d1f);
+      color: white;
+      min-height: 100vh;
+      overflow-y: auto;
+      position: relative;
+      padding-bottom: 5rem;
+    }
+
+    .particle {
+      position: absolute;
+      width: 10px;
+      height: 10px;
+      background: rgba(99, 102, 241, 0.5);
+      border-radius: 50%;
+      animation: float 10s infinite ease-in-out;
+      z-index: 0;
+    }
+
+    @keyframes float {
+      0% { transform: translateY(0) scale(1); opacity: 0.8; }
+      50% { transform: translateY(-50px) scale(1.4); opacity: 0.4; }
+      100% { transform: translateY(0) scale(1); opacity: 0.8; }
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+      backdrop-filter: blur(20px);
+      z-index: 1;
+    }
+
+    .neon {
+      color: #a78bfa;
+      text-shadow: 0 0 10px #7c3aed, 0 0 20px #7c3aed;
+    }
+  </style>
+</head>
+
+<body class="scroll-smooth">
+
+  <!-- Floating Particles -->
+  <div class="particle" style="top:10%; left:20%; animation-delay:0s;"></div>
+  <div class="particle" style="top:30%; left:70%; animation-delay:2s;"></div>
+  <div class="particle" style="top:60%; left:40%; animation-delay:4s;"></div>
+  <div class="particle" style="top:80%; left:80%; animation-delay:1s;"></div>
+  <div class="particle" style="top:50%; left:10%; animation-delay:3s;"></div>
+
+ 
+
+  <!-- Main Content -->
+  <main class="relative z-10 px-6 py-10 max-w-3xl mx-auto space-y-10">
+
+    <section class="text-center space-y-2">
+      <h1 class="text-5xl font-extrabold neon">Contact Us</h1>
+      <p class="text-gray-300 text-lg max-w-2xl mx-auto">
+        Have a question, suggestion, or idea? Let’s connect and make something incredible together.
+      </p>
+    </section>
+
+    <!-- Contact Form -->
+    <section class="glass-card p-8 rounded-2xl">
+      <form id="contactForm" class="space-y-5">
+        <div>
+          <label for="name" class="block text-gray-300 font-semibold mb-1">Name</label>
+          <input type="text" id="name" required placeholder="Your name"
+            class="w-full px-4 py-3 bg-black/30 border border-white/20 rounded-lg text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+        </div>
+
+        <div>
+          <label for="email" class="block text-gray-300 font-semibold mb-1">Email</label>
+          <input type="email" id="email" required placeholder="you@example.com"
+            class="w-full px-4 py-3 bg-black/30 border border-white/20 rounded-lg text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+        </div>
+
+        <div>
+          <label for="subject" class="block text-gray-300 font-semibold mb-1">Subject</label>
+          <input type="text" id="subject" required placeholder="Subject"
+            class="w-full px-4 py-3 bg-black/30 border border-white/20 rounded-lg text-white focus:ring-2 focus:ring-indigo-500 outline-none">
+        </div>
+
+        <div>
+          <label for="message" class="block text-gray-300 font-semibold mb-1">Message</label>
+          <textarea id="message" required placeholder="Write your message..."
+            class="w-full px-4 py-3 bg-black/30 border border-white/20 rounded-lg text-white focus:ring-2 focus:ring-indigo-500 outline-none h-32"></textarea>
+        </div>
+
+        <button type="submit"
+          class="w-full bg-indigo-600 hover:bg-indigo-700 transition-all py-3 rounded-lg font-bold text-lg shadow-md">
+          Send Message
+        </button>
+      </form>
+
+      <p id="successMessage" class="hidden text-green-400 font-semibold text-center mt-4">
+        ✅ Message sent successfully!
+      </p>
+    </section>
+
+    <!-- Contact Info -->
+    <section class="text-center text-gray-400 space-y-2">
+      <p>Email: support@pitchDeck.com</p>
+      <p>Phone: +91-987-654-3210</p>
+      <p>Address: Innovation Tower, India</p>
+    </section>
+
+  </main>
+
+    <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+        
+        <!-- Logo -->
+        <div class="text-2xl font-bold">
+          PitchDeck
+        </div>
+        
+        <!-- Navigation -->
+        <div class="flex space-x-6 text-gray-300">
+          <a href="index.html" target="_blank" class="hover:text-indigo-400 transition">Home</a>
+          <a href="about.html" target="_blank" class="hover:text-indigo-400 transition">About</a>
+          <a href="services.html" target="_blank" class="hover:text-indigo-400 transition">Services</a>
+          <a href="contact.html" target="_blank" class="hover:text-indigo-400 transition">Contact</a>
+        </div>
+        
+        <!-- Social Icons -->
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-indigo-400 transition"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="hover:text-indigo-400 transition"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-indigo-400 transition"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="mt-6 text-center text-gray-400 text-sm">
+        © 2025 PitchDeck. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+  <!-- JS to Connect to Backend -->
+  <script>
+    const form = document.getElementById('contactForm');
+    const successMessage = document.getElementById('successMessage');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const formData = {
+        name: document.getElementById('name').value,
+        email: document.getElementById('email').value,
+        subject: document.getElementById('subject').value,
+        message: document.getElementById('message').value,
+      };
+
+      try {
+        const response = await fetch("http://localhost:5000/api/contact", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        });
+
+        const result = await response.json();
+        if (result.success) {
+          successMessage.classList.remove("hidden");
+          form.reset();
+          setTimeout(() => successMessage.classList.add("hidden"), 3000);
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } else {
+          alert("❌ Failed to send message. Try again.");
+        }
+      } catch (err) {
+        alert("⚠️ Unable to reach server.");
+        console.error(err);
+      }
+    });
+  </script>
+
+    
+
+</body>
+</html>

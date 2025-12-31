@@ -1,0 +1,703 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PitchHub - Startup Pitching Portal</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+/>
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+  <style>
+    /* Animations */
+    @keyframes bounceIn {
+      0% { transform: scale(0.5); opacity: 0; }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    .animate-bounceIn { animation: bounceIn 0.3s ease; }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    .animate-fadeIn { animation: fadeIn 0.4s ease; }
+
+    @keyframes animate-gradient-bg {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+    .animate-gradient-bg {
+      background-size: 400% 400%;
+      animation: animate-gradient-bg 15s ease infinite;
+    }
+
+    @keyframes animate-blob {
+      0%,100%{ transform: translate(0,0) scale(1); }
+      33%{ transform: translate(30px,-50px) scale(1.1); }
+      66%{ transform: translate(-20px,20px) scale(0.9); }
+    }
+    .animate-blob { animation: animate-blob 20s infinite; }
+    .animation-delay-2000 { animation-delay: 2s; }
+    .animation-delay-3000 { animation-delay: 3s; }
+    .animation-delay-4000 { animation-delay: 4s; }
+    .animation-delay-5000 { animation-delay: 5s; }
+
+    /* Hide scrollbars */
+    .scrollbar-hide::-webkit-scrollbar { display: none; }
+    .scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
+  </style>
+</head>
+<body class="flex flex-col min-h-screen bg-gray-50">
+
+  
+ <nav class="text-white shadow-lg fixed top-0 left-0 w-full z-50">
+  <div class="w-full mx-auto px-6">
+    <div class="flex justify-between items-center py-3">
+
+      <!-- Logo -->
+      <div class="flex items-center space-x-2">
+        <div class="text-2xl">🚀</div>
+        <h1 class="text-2xl font-bold">
+          <a href="index.html">PitchDeck</a>
+        </h1>
+      </div>
+
+      <!-- Center Links -->
+      <div class="hidden md:flex justify-center flex-grow">
+        <div class="flex items-center space-x-2">
+          <a href="page/browse.html" class="nav-link px-5 py-2.5">Browse Ideas</a>
+          <a href="pitch.html" class="nav-link px-5 py-2.5">Submit Pitch</a>
+          <a href="investor.html" class="nav-link px-5 py-2.5">For Investors</a>
+          <a href="mentors.html" class="nav-link px-5 py-2.5">Mentorship</a>
+        </div>
+      </div>
+<!-- Right Auth Area -->
+<div id="authArea" class="flex items-center space-x-3 relative">
+
+  <!-- LOGIN / SIGNUP -->
+  <div id="loginButtons" class="flex items-center space-x-3">
+    <a href="login.html"
+       class="px-4 py-2 rounded-lg bg-white text-black font-semibold hover:bg-gray-200 transition">
+      Login
+    </a>
+
+    <a href="signup.html"
+       class="px-4 py-2 rounded-lg bg-purple-600 text-white font-semibold hover:bg-purple-700 transition">
+      Sign Up
+    </a>
+  </div>
+
+  <!-- PROFILE (hidden by default) -->
+  <div id="profileBox" class="hidden relative">
+    <button id="profileBtn"
+      class="flex items-center space-x-2 bg-white text-black px-3 py-2 rounded-lg shadow hover:bg-gray-100 transition">
+
+      <img src="image.jpg"
+           class="w-8 h-8 rounded-full object-cover">
+
+      <span id="profileName" class="text-sm font-semibold"></span>
+      <i class="fa-solid fa-chevron-down text-xs"></i>
+    </button>
+
+    <!-- Dropdown -->
+    <div id="profileDropdown"
+      class="hidden absolute right-0 mt-2 w-44 bg-white text-black rounded-lg shadow-lg overflow-hidden">
+
+      <a href="admin.html"
+         class="block px-4 py-2 hover:bg-gray-100">
+        Dashboard
+      </a>
+
+      <button onclick="logout()"
+        class="w-full text-left px-4 py-2 hover:bg-gray-100">
+        Logout
+      </button>
+    </div>
+  </div>
+
+</div>
+
+    </div>  
+  </div>
+</nav>
+
+
+
+  <main class="flex-grow">
+    <!-- Hero Section -->
+     
+<section id="hero" class="gradient-bg text-white py-20">
+  
+  <div class="max-w-7xl mx-auto px-4 text-center">
+    <h2 class="text-5xl font-bold mb-6">Turn Your Ideas Into Reality</h2>
+    <p class="text-xl mb-8 max-w-3xl mx-auto">
+      Connect with investors, mentors, and collaborators. Showcase your startup ideas and get the funding and guidance you need to succeed.
+    </p>
+    <div class="flex justify-center space-x-4 mb-16">
+      <!-- Open Submit Pitch page -->
+
+      
+      <button onclick="window.location.href='pitch.html'" 
+              class="bg-white text-purple-600 px-8 py-3 rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors">
+        Submit Your Pitch
+      </button>
+      <!-- Open Browse Ideas page -->
+      <button onclick="window.location.href='page/browse.html'" 
+              class="border-2 border-white px-8 py-3 rounded-lg font-bold text-lg hover:bg-white hover:text-purple-600 transition-colors">
+        Explore Ideas
+      </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 hero-stats text-purple-100">
+      <div class="stats-card text-4xl font-bold">500+<div class="text-lg opacity-90 font-normal">Active Startups</div></div>
+      <div class="stats-card text-4xl font-bold">150+<div class="text-lg opacity-90 font-normal">Investors</div></div>
+      <div class="stats-card text-4xl font-bold">$2.5M+<div class="text-lg opacity-90 font-normal">Funded</div></div>
+    </div>
+  </div>
+</section>
+
+  </main>
+<!-- Floating Chat Button - Higher Up -->
+<a href="chat.html"
+   class="fixed right-6 bottom-28 bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500
+          text-white p-3 rounded-full shadow-lg hover:scale-110 hover:shadow-2xl
+          transition-transform duration-300 flex items-center justify-center text-xl z-50">
+  💬
+</a>
+
+<!-- Video Testimonials Section -->
+<section id="videos" 
+  class="bg-[url('image.jpg')] bg-cover bg-center bg-no-repeat py-20">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+<h2 class="text-5xl font-extrabold text-white mb-4 relative overflow-hidden inline-block">
+  <span class="block animate-[slideIn_1s_ease-in-out] bg-gradient-to-r from-pink-500 via-purple-500 to-blue-500 text-transparent bg-clip-text">
+    🎥 Founder Stories
+  </span>
+ 
+</h2>
+<p class="text-black font-medium max-w-2xl mx-auto mb-12 text-center text-lg leading-relaxed opacity-90">
+  The best pitches are born from stories — discover the faces behind innovation.
+</p>
+
+<style>
+@keyframes slideIn {
+  0% { transform: translateY(100%); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+</style>
+
+    <!-- Video Grid -->
+    <div class="grid gap-10 md:grid-cols-3">
+
+      <!-- Video 1 -->
+      <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 overflow-hidden">
+        <div class="relative">
+          <iframe class="w-full h-56" src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+            title="Founder Story 1" allowfullscreen></iframe>
+        </div>
+        <div class="p-6 text-left">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Priya Sharma — GreenWave</h3>
+          <p class="text-gray-600 text-sm">
+            “We turned our eco-friendly idea into a funded reality with guidance from top mentors on PitchDeck.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Video 2 -->
+      <div class="bg-white rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 overflow-hidden">
+        <div class="relative">
+          <iframe class="w-full h-56" src="https://www.youtube.com/embed/tgbNymZ7vqY" 
+            title="Founder Story 2" allowfullscreen></iframe>
+        </div>
+        <div class="p-6 text-left">
+          <h3 class="text-xl font-semibold text-gray-900 mb-2">Ravi Patel — FinEdge</h3>
+          <p class="text-gray-600 text-sm">
+            “The investor sessions gave us clarity and exposure that changed our growth path forever.”
+          </p>
+        </div>
+      </div>
+
+      <!-- Video 5 -->
+<div class="bg-white rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1 overflow-hidden">
+  <div class="relative">
+    <iframe class="w-full h-56"
+      src="https://www.youtube.com/embed/XSk3xO2-3rE
+"
+      title="Mentor Testimonial"
+      allowfullscreen></iframe>
+  </div>
+  <div class="p-6 text-left">
+    <h3 class="text-xl font-semibold text-gray-900 mb-2">
+      Rohit Malhotra — Startup Mentor
+    </h3>
+    <p class="text-gray-600 text-sm">
+      “I recommend PitchDeck to every early-stage founder I mentor. 
+      It simplifies pitching and attracts serious investors.”
+    </p>
+  </div>
+</div>
+
+
+    </div>
+  </div>
+</section>
+
+
+<!-- Upcoming Events Section -->
+<section id="events" 
+  class="bg-[url('/image/image2.jpg')] bg-cover bg-center bg-no-repeat py-20">
+  <div class="max-w-7xl mx-auto px-6 text-center">
+    
+    <h2 class="text-4xl font-extrabold text-center mb-4 text-blue-900">
+  <span class="block animate-[slideIn_1s_ease-in-out]">
+    📅 Upcoming Events
+  </span>
+</h2>
+
+
+    <p class="text-black font-medium max-w-2xl mx-auto mb-12 text-center text-lg leading-relaxed opacity-90">
+      Join <span class="text-black font-semibold">live pitch sessions</span>, 
+      <span class="text-black font-semibold">networking meetups</span>, and 
+      <span class="text-black font-semibold">exclusive investor panels</span> 
+      to boost your startup journey.
+    </p>
+
+    <style>
+    @keyframes slideIn {
+      0% {
+        transform: translateY(30px);
+        opacity: 0;
+      }
+      100% {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+    </style>
+
+    <!-- Events Grid -->
+    <div class="grid gap-8 md:grid-cols-2 justify-center max-w-4xl mx-auto">
+
+
+      
+      <!-- Event 1 -->
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+        <img src="https://images.unsplash.com/photo-1519389950473-47ba0277781c?auto=format&fit=crop&w=800&q=80" 
+             alt="Pitch Event" class="rounded-lg mb-4 w-full h-40 object-cover">
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Startup Demo Day 2025</h3>
+        <p class="text-gray-500 mb-4">📆 31st December 2025 | 🕒 5:00 PM IST</p>
+        <p class="text-gray-700 mb-6">
+          Present your startup to top-tier investors and get real-time feedback on your pitch.
+        </p>
+        <button onclick="openForm()" 
+    class="bg-gradient-to-r from-purple-500 to-blue-500 text-white px-5 py-2 rounded-lg shadow-md hover:opacity-90 transition">
+    Register Now
+</button>
+
+      </div>
+
+      <!-- Event 2 -->
+      <div class="bg-white p-6 rounded-xl shadow-md hover:shadow-xl transition transform hover:-translate-y-1">
+        <img src="https://images.unsplash.com/photo-1504384308090-c894fdcc538d?auto=format&fit=crop&w=800&q=80" 
+             alt="Webinar" class="rounded-lg mb-4 w-full h-40 object-cover">
+        <h3 class="text-xl font-semibold text-gray-900 mb-2">Investor Connect Webinar</h3>
+        <p class="text-gray-500 mb-4">📆 31st December2025 | 🕒 6:30 PM IST</p>
+        <p class="text-gray-700 mb-6">
+          Learn what investors look for in a pitch and how to make your deck stand out.
+        </p>
+    <button 
+  class="bg-gradient-to-r from-blue-500 to-purple-500 text-white px-5 py-2 rounded-lg font-medium shadow-md hover:opacity-90 transition"
+  onclick="window.open('https://wa.me/9028775023?text=I%20want%20to%20join%20the%20community%20%F0%9F%91%8D')">
+  Join Community
+    </button>
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+<!-- 🌈 Testimonials + Community Section (Merged with Animated Background) -->
+<section id="success-community" class="relative py-24 overflow-hidden">
+  
+  <!-- Animated Gradient Background -->
+  <style>
+    @keyframes gradientFlow {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+  </style>
+
+  <div class="absolute inset-0 bg-gradient-to-r from-purple-900 via-indigo-900 to-blue-900 bg-[length:200%_200%] animate-[gradientFlow_15s_ease_infinite] opacity-90"></div>
+
+  <div class="relative max-w-7xl mx-auto px-6 text-center text-white space-y-32">
+
+
+    <!-- 🌟 Success Stories -->
+    <div>
+      <div class="pb-8 mb-8">
+
+        
+
+      <h2 class="text-5xl font-extrabold mb-6">
+        <span class="bg-gradient-to-r from-pink-400 via-purple-400 to-blue-400 text-transparent bg-clip-text animate-pulse">
+          🌟 Success Stories
+        </span>
+      </h2>
+      <p class="text-gray-300 max-w-2xl mx-auto mb-16 text-lg">
+        Founders and investors who transformed ideas into reality with 
+        <span class="text-purple-400 font-semibold">PitchDeck</span>.
+      </p>
+
+      <div class="grid gap-10 md:grid-cols-3">
+        <!-- Card 1 -->
+        <div class="group relative bg-white/10 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-lg hover:shadow-purple-500/30 transition transform hover:-translate-y-2">
+          <div class="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-pink-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
+          <div class="text-6xl text-purple-400 mb-4 opacity-80 group-hover:opacity-100 transition">“</div>
+          <p class="text-gray-200 mb-8 italic">
+            Thanks to PitchDeck, we connected with two major investors and raised our seed round within weeks!
+          </p>
+          <div class="flex items-center justify-center space-x-4">
+            <img src="https://randomuser.me/api/portraits/women/68.jpg" class="w-14 h-14 rounded-full border-2 border-purple-400 shadow-md" alt="">
+            <div class="text-left">
+              <h4 class="font-semibold text-white">Priya Sharma</h4>
+              <p class="text-gray-400 text-sm">Founder, GreenWave</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2 -->
+        <div class="group relative bg-white/10 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-lg hover:shadow-pink-500/30 transition transform hover:-translate-y-2">
+          <div class="absolute inset-0 bg-gradient-to-br from-pink-600/10 to-indigo-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
+          <div class="text-6xl text-pink-400 mb-4 opacity-80 group-hover:opacity-100 transition">“</div>
+          <p class="text-gray-200 mb-8 italic">
+            The mentorship and exposure gave our startup the clarity we needed to refine our pitch and stand out.
+          </p>
+          <div class="flex items-center justify-center space-x-4">
+            <img src="https://randomuser.me/api/portraits/men/75.jpg" class="w-14 h-14 rounded-full border-2 border-pink-400 shadow-md" alt="">
+            <div class="text-left">
+              <h4 class="font-semibold text-white">Ravi Patel</h4>
+              <p class="text-gray-400 text-sm">Co-founder, FinEdge</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3 (Different Version) -->
+<div class="group relative bg-white/10 backdrop-blur-xl border border-white/10 p-8 rounded-2xl shadow-lg hover:shadow-purple-500/30 transition transform hover:-translate-y-2">
+  <div class="absolute inset-0 bg-gradient-to-br from-purple-600/10 to-pink-600/10 opacity-0 group-hover:opacity-100 transition-all duration-500 rounded-2xl"></div>
+
+  <div class="text-6xl text-purple-400 mb-4 opacity-80 group-hover:opacity-100 transition">“</div>
+
+  <p class="text-gray-200 mb-8 italic">
+    PitchDeck gave our startup the visibility it needed. We connected with mentors and investors faster than expected.
+  </p>
+
+  <div class="flex items-center justify-center space-x-4">
+    <img src="https://randomuser.me/api/portraits/women/45.jpg"
+         class="w-14 h-14 rounded-full border-2 border-purple-400 shadow-md"
+         alt="Founder Photo">
+    <div class="text-left">
+      <h4 class="font-semibold text-white">Neha Kapoor</h4>
+      <p class="text-gray-400 text-sm">Founder, TechNova</p>
+    </div>
+  </div>
+</div>
+
+      </div>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-white py-8 w-full">
+
+
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+      
+      <div class="text-2xl font-bold">PitchDeck</div>
+
+      <div class="flex space-x-6">
+        <a href="index.html" class="hover:text-indigo-500 transition-colors">Home</a>
+        <a href="about.html" class="hover:text-indigo-500 transition-colors">About</a>
+        <a href="services.html" class="hover:text-indigo-500 transition-colors">Services</a>
+        <a href="contact.html" class="hover:text-indigo-500 transition-colors">Contact</a>
+      </div>
+
+      <div class="flex space-x-4">
+        <!-- Facebook -->
+        <a href="https://www.facebook.com/yourprofile" 
+           target="_blank" 
+           class="p-2 bg-gray-700 rounded-full hover:bg-indigo-500 transition-all">
+          <i class="fab fa-facebook-f"></i>
+        </a>
+
+        <!-- LinkedIn -->
+        <a href="https://www.linkedin.com/in/yourprofile" 
+           target="_blank"
+           class="p-2 bg-gray-700 rounded-full hover:bg-blue-600 transition-all">
+          <i class="fab fa-linkedin-in"></i>
+        </a>
+
+        <!-- Instagram -->
+        <a href="https://www.instagram.com/yourprofile" 
+           target="_blank"
+           class="p-2 bg-gray-700 rounded-full hover:bg-pink-500 transition-all">
+          <i class="fab fa-instagram"></i>
+        </a>
+      </div>
+
+    </div>
+
+    <div class="mt-6 text-center text-gray-400 text-sm">
+      © 2025 PitchDeck. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+
+
+
+  <script>
+    // Section Show/Hide function
+    function showSection(sectionId) {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(sec => sec.style.display = 'none');
+      const active = document.getElementById(sectionId);
+      if(active) active.style.display = 'block';
+    }
+  </script>
+
+
+<script>
+const pitchForm = document.getElementById('pitch-form');
+const successMessage = document.getElementById('success-message');
+
+pitchForm.addEventListener('submit', async (e) => {
+  e.preventDefault();
+
+  // Collect form data
+  const formData = new FormData(pitchForm);
+  const data = Object.fromEntries(formData.entries());
+
+  try {
+    const res = await fetch('/api/submit-pitch', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(data),
+    });
+
+    const result = await res.json();
+
+    if(result.success){
+      pitchForm.style.display = 'none';
+      successMessage.classList.remove('hidden');
+    } else {
+      alert(result.message || 'Error submitting pitch');
+    }
+  } catch(err){
+    console.error('Error:', err);
+    alert('Server error. Please try again.');
+  }
+});
+</script>
+
+<!-- Popup Background -->
+<div id="registerPopup"
+  class="fixed inset-0 bg-black/60 backdrop-blur-md hidden flex justify-center items-center z-50">
+
+  <!-- Popup Box -->
+  <div class="bg-gradient-to-br from-purple-600 via-indigo-600 to-blue-600
+    w-full max-w-md p-8 rounded-3xl shadow-2xl relative text-white">
+
+    <!-- Close Button -->
+    <button onclick="closeForm()"
+      class="absolute top-3 right-3 text-white text-xl font-bold">
+      ✖
+    </button>
+
+    <h2 class="text-3xl font-extrabold mb-4 text-center">
+      Register Now 🚀
+    </h2>
+
+   <!-- Startup Demo Registration Form -->
+<form id="demoForm" class="space-y-4">
+
+  <div>
+    <label class="font-semibold">Founder Name</label>
+    <input type="text" name="founderName" required
+      class="w-full px-4 py-2 rounded-xl bg-white/20 text-white"
+      placeholder="Founder full name">
+  </div>
+
+  <div>
+    <label class="font-semibold">Email</label>
+    <input type="email" name="email" required
+      class="w-full px-4 py-2 rounded-xl bg-white/20 text-white"
+      placeholder="founder@email.com">
+  </div>
+
+  <div>
+    <label class="font-semibold">Startup Name</label>
+    <input type="text" name="startupName" required
+      class="w-full px-4 py-2 rounded-xl bg-white/20 text-white"
+      placeholder="Your startup name">
+  </div>
+
+  <div>
+    <label class="font-semibold">Industry</label>
+    <select name="industry" required
+      class="w-full px-4 py-2 rounded-xl bg-white/20 text-black">
+      <option value="">Select Industry</option>
+      <option>EdTech</option>
+      <option>FinTech</option>
+      <option>HealthTech</option>
+      <option>AI / ML</option>
+      <option>E-Commerce</option>
+    </select>
+  </div>
+
+  <div>
+    <label class="font-semibold">Demo Description</label>
+    <textarea name="demoDescription" rows="3" required
+      class="w-full px-4 py-2 rounded-xl bg-white/20 text-white"
+      placeholder="Briefly explain your demo"></textarea>
+  </div>
+
+  <button type="submit"
+    class="w-full bg-white text-purple-700 py-3 rounded-xl font-bold">
+    Register for Demo
+  </button>
+</form>
+
+<p id="demoSuccess" class="hidden text-green-300 text-center mt-4">
+  ✅ Demo registration successful!
+</p>
+
+<script>
+document.getElementById("demoForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const data = Object.fromEntries(new FormData(e.target).entries());
+
+  const res = await fetch("http://localhost:5000/api/demo-register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  if (res.ok) {
+    document.getElementById("demoSuccess").classList.remove("hidden");
+    e.target.reset();
+  } else {
+    alert("Registration failed");
+  }
+});
+</script>
+
+
+<script>
+async function handleSubmit(e) {
+  e.preventDefault();
+
+  const form = document.getElementById("registerForm");
+  const data = {
+    fullName: form.fullName.value,
+    email: form.email.value,
+    startupName: form.startupName.value
+  };
+
+  const res = await fetch("/api/register", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify(data)
+  });
+
+  if (res.ok) {
+    document.getElementById("successMsg").style.display = "block";
+    form.reset();
+  }
+}
+</script>
+
+<style>
+@keyframes scaleUp {
+    0% { transform: scale(0.7); opacity: 0; }
+    100% { transform: scale(1); opacity: 1; }
+}
+.animate-scaleUp { animation: scaleUp 0.3s ease-out; }
+</style>
+
+<!-- JOIN WEBINAR FORM POPUP -->
+<div id="webinarFormPopup" class="fixed inset-0 hidden items-center justify-center bg-black/40 backdrop-blur-sm z-[9999]">
+  <div class="bg-white/90 rounded-2xl shadow-2xl p-8 w-[350px] border border-purple-300 animate-scaleUp">
+      <h2 class="text-2xl font-bold text-purple-700 text-center mb-3">Join Webinar 🎙️</h2>
+      <p class="text-center text-gray-700 mb-5">Fill the details to join the live event</p>
+
+      <form id="webinarForm" class="space-y-4">
+          <input type="text" placeholder="Full Name"
+            class="w-full p-3 rounded-xl border border-purple-300 focus:ring-2 focus:ring-purple-500 outline-none">
+          
+          <input type="email" placeholder="Email Address"
+            class="w-full p-3 rounded-xl border border-purple-300 focus:ring-2 focus:ring-purple-500 outline-none">
+
+          <input type="text" placeholder="Topic of Interest"
+            class="w-full p-3 rounded-xl border border-purple-300 focus:ring-2 focus:ring-purple-500 outline-none">
+
+          <button class="w-full bg-purple-600 text-white font-semibold py-3 rounded-xl hover:bg-purple-700 transition">
+              Join Now
+          </button>
+      </form>
+
+      <button onclick="closeWebinarForm()" 
+        class="mt-4 w-full bg-gray-200 text-gray-700 py-2 rounded-xl hover:bg-gray-300">
+        Close
+      </button>
+  </div>
+</div>
+
+<script>
+  const user = JSON.parse(localStorage.getItem("user"));
+
+  const loginButtons = document.getElementById("loginButtons");
+  const profileBox = document.getElementById("profileBox");
+  const profileName = document.getElementById("profileName");
+  const profileBtn = document.getElementById("profileBtn");
+  const profileDropdown = document.getElementById("profileDropdown");
+
+  // If logged in
+  if (user) {
+    loginButtons.classList.add("hidden");
+    profileBox.classList.remove("hidden");
+    profileName.innerText = user.name || user.email || "User";
+  }
+
+  // Toggle dropdown
+  profileBtn?.addEventListener("click", () => {
+    profileDropdown.classList.toggle("hidden");
+  });
+
+  // Logout
+  function logout() {
+    localStorage.removeItem("user");
+    window.location.href = "login.html";
+  }
+
+  // Close dropdown on outside click
+  document.addEventListener("click", (e) => {
+    if (!profileBox.contains(e.target)) {
+      profileDropdown?.classList.add("hidden");
+    }
+  });
+</script>
+
+</body>
+
+
+</html>

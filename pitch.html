@@ -1,0 +1,304 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pitch Submission Form</title>
+  <script src="/_sdk/element_sdk.js"></script>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    /* Full-screen animated gradient background */
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: linear-gradient(45deg, #667eea, #764ba2, #10b981, #f59e0b);
+      background-size: 400% 400%;
+      animation: diagonalShift 12s ease infinite;
+      font-family: 'Inter', sans-serif;
+    }
+
+    @keyframes diagonalShift {
+      0% { background-position: 0% 0%; }
+      50% { background-position: 100% 100%; }
+      100% { background-position: 0% 0%; }
+    }
+
+    .form-container {
+      background: rgba(255, 255, 255, 0.95);
+      border-radius: 2rem;
+      padding: 2rem;
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .form-container:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 25px 60px rgba(0, 0, 0, 0.15);
+    }
+
+    @view-transition { navigation: auto; }
+  </style>
+</head>
+<body class="min-h-full bg-gray-50">
+
+  
+
+<main class="min-h-full flex items-center justify-center py-12 px-4">
+  <div class="max-w-4xl w-full">
+
+    <!-- Header -->
+    <div class="text-center mb-8">
+      <div class="gradient-bg w-20 h-20 rounded-full flex items-center justify-center mx-auto mb-6">
+        <svg class="w-10 h-10 text-white" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M9,11H7V9H9V11M13,11H11V9H13V11M17,11H15V9H17V11M19,3H5A2,2 0 0,0 3,5V19A2,2 0 0,0 5,21H19A2,2 0 0,0 21,19V5A2,2 0 0,0 19,3M19,19H5V8H19V19Z" />
+        </svg>
+      </div>
+      <h1 id="form-title" class="text-4xl font-bold text-gray-800 mb-4">Submit Your Pitch</h1>
+      <p id="form-subtitle" class="text-xl text-gray-600 max-w-2xl mx-auto">
+        Share your innovative business idea with us. We're excited to learn about your vision and how we can help bring it to life.
+      </p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="mb-8">
+      <div class="flex justify-between items-center mb-2">
+        <span class="text-sm font-medium text-gray-600">Progress</span>
+        <span id="progress-text" class="text-sm font-medium text-purple-600">Step 1 of 4</span>
+      </div>
+      <div class="w-full bg-gray-200 rounded-full h-2">
+        <div id="progress-bar" class="progress-bar bg-gradient-to-r from-purple-500 to-blue-500 h-2 rounded-full" style="width: 25%"></div>
+      </div>
+    </div>
+
+    <!-- Form Container -->
+    <div class="bg-white rounded-2xl shadow-xl p-8 form-container">
+      <form id="pitch-form">
+
+        <!-- Step 1: Basic Information -->
+        <div id="step-1" class="form-step">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Basic Information</h2>
+          <div class="grid md:grid-cols-2 gap-6">
+            <div>
+              <label for="company-name" class="block text-sm font-medium text-gray-700 mb-2">Company Name *</label>
+              <input type="text" id="company-name" name="company_name" required class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Enter your company name">
+            </div>
+            <div>
+              <label for="founder-name" class="block text-sm font-medium text-gray-700 mb-2">Founder Name *</label>
+              <input type="text" id="founder-name" name="founder_name" required class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Your full name">
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700 mb-2">Email Address *</label>
+              <input type="email" id="email" name="email" required class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="your@email.com">
+            </div>
+            <div>
+              <label for="phone" class="block text-sm font-medium text-gray-700 mb-2">Phone Number</label>
+              <input type="tel" id="phone" name="phone" class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="+1 (555) 123-4567">
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 2: Business Details -->
+        <div id="step-2" class="form-step hidden">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Business Details</h2>
+          <div class="space-y-6">
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="industry" class="block text-sm font-medium text-gray-700 mb-2">Industry *</label>
+                <select id="industry" name="industry" required class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                  <option value="">Select Industry</option>
+                  <option value="Technology">Technology</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Finance">Finance</option>
+                  <option value="E-commerce">E-commerce</option>
+                  <option value="Education">Education</option>
+                  <option value="Real Estate">Real Estate</option>
+                  <option value="Food & Beverage">Food & Beverage</option>
+                  <option value="Manufacturing">Manufacturing</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+              <div>
+                <label for="stage" class="block text-sm font-medium text-gray-700 mb-2">Business Stage *</label>
+                <select id="stage" name="stage" required class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                  <option value="">Select Stage</option>
+                  <option value="Idea">Idea Stage</option>
+                  <option value="MVP">MVP/Prototype</option>
+                  <option value="Early Revenue">Early Revenue</option>
+                  <option value="Growth">Growth Stage</option>
+                  <option value="Scaling">Scaling</option>
+                </select>
+              </div>
+            </div>
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="funding-amount" class="block text-sm font-medium text-gray-700 mb-2">Funding Amount Sought</label>
+                <select id="funding-amount" name="funding_amount" class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                  <option value="">Select Amount</option>
+                  <option value="Under $50K">Under $50K</option>
+                  <option value="$50K - $250K">$50K - $250K</option>
+                  <option value="$250K - $1M">$250K - $1M</option>
+                  <option value="$1M - $5M">$1M - $5M</option>
+                  <option value="$5M+">$5M+</option>
+                </select>
+              </div>
+              <div>
+                <label for="team-size" class="block text-sm font-medium text-gray-700 mb-2">Team Size</label>
+                <select id="team-size" name="team_size" class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent">
+                  <option value="">Select Team Size</option>
+                  <option value="Solo Founder">Solo Founder</option>
+                  <option value="2-3 People">2-3 People</option>
+                  <option value="4-10 People">4-10 People</option>
+                  <option value="11-25 People">11-25 People</option>
+                  <option value="25+ People">25+ People</option>
+                </select>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 3: Pitch Summary -->
+        <div id="step-3" class="form-step hidden">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Pitch Summary</h2>
+          <div class="space-y-6">
+            <div>
+              <label for="pitch-summary" class="block text-sm font-medium text-gray-700 mb-2">Elevator Pitch (30 seconds) *</label>
+              <textarea id="pitch-summary" name="pitch_summary" required rows="4" class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Describe your business in 2-3 sentences."></textarea>
+            </div>
+            <div>
+              <label for="problem-statement" class="block text-sm font-medium text-gray-700 mb-2">Problem Statement *</label>
+              <textarea id="problem-statement" name="problem_statement" required rows="4" class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="What problem are you solving?"></textarea>
+            </div>
+            <div>
+              <label for="solution" class="block text-sm font-medium text-gray-700 mb-2">Solution *</label>
+              <textarea id="solution" name="solution" required rows="4" class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="How does your product/service solve this problem?"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Step 4: Market & Business Model -->
+        <div id="step-4" class="form-step hidden">
+          <h2 class="text-2xl font-bold text-gray-800 mb-6">Market & Business Model</h2>
+          <div class="space-y-6">
+            <div>
+              <label for="target-market" class="block text-sm font-medium text-gray-700 mb-2">Target Market *</label>
+              <textarea id="target-market" name="target_market" required rows="4" class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Who are your customers?"></textarea>
+            </div>
+            <div>
+              <label for="business-model" class="block text-sm font-medium text-gray-700 mb-2">Business Model *</label>
+              <textarea id="business-model" name="business_model" required rows="4" class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="How do you make money?"></textarea>
+            </div>
+            <div>
+              <label for="competition" class="block text-sm font-medium text-gray-700 mb-2">Competition & Differentiation</label>
+              <textarea id="competition" name="competition" rows="4" class="input-focus w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-purple-500 focus:border-transparent" placeholder="Who are your competitors?"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="flex justify-between items-center mt-8 pt-6 border-t border-gray-200">
+          <button type="button" id="prev-btn" class="px-6 py-3 text-gray-600 hover:text-gray-800 font-medium hidden"> ← Previous </button>
+          <div class="flex space-x-4">
+            <button type="button" id="next-btn" class="btn-primary bg-purple-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-purple-700"> Next → </button>
+            <button type="submit" id="submit-btn" class="btn-primary bg-green-600 text-white px-8 py-3 rounded-lg font-medium hover:bg-green-700 hidden">
+              <span id="submit-text">Submit Pitch</span>
+              <svg id="loading-spinner" class="loading-spinner w-5 h-5 ml-2 hidden" fill="currentColor" viewBox="0 0 24 24"><path d="M12,4V2A10,10 0 0,0 2,12H4A8,8 0 0,1 12,4Z" /></svg>
+            </button>
+          </div>
+        </div>
+
+      </form>
+
+      <!-- Success Message -->
+      <div id="success-message" class="hidden text-center py-12">
+        <div class="success-animation">
+          <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-6">
+            <svg class="w-10 h-10 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M9,20.42L2.79,14.21L5.62,11.38L9,14.77L18.88,4.88L21.71,7.71L9,20.42Z"/></svg>
+          </div>
+          <h3 id="success-title" class="text-2xl font-bold text-gray-800 mb-4">Thank you for your submission!</h3>
+          <p class="text-gray-600 mb-6">We've received your pitch and will review it carefully. Our team will get back to you within 3-5 business days.</p>
+            <a href="index.html" 
+       class="bg-purple-600 hover:bg-purple-700 text-white font-medium px-8 py-3 rounded-lg shadow-md transition-all duration-200">
+      ← Back to Home
+    </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<script>
+  let currentStep = 1;
+  const totalSteps = 4;
+
+  function updateProgress() {
+    const progressBar = document.getElementById('progress-bar');
+    const progressText = document.getElementById('progress-text');
+    const percentage = (currentStep / totalSteps) * 100;
+    progressBar.style.width = `${percentage}%`;
+    progressText.textContent = `Step ${currentStep} of ${totalSteps}`;
+  }
+
+  function showStep(step) {
+    for (let i = 1; i <= totalSteps; i++) document.getElementById(`step-${i}`).classList.add('hidden');
+    document.getElementById(`step-${step}`).classList.remove('hidden');
+
+    document.getElementById('prev-btn').classList.toggle('hidden', step===1);
+    document.getElementById('next-btn').classList.toggle('hidden', step===totalSteps);
+    document.getElementById('submit-btn').classList.toggle('hidden', step!==totalSteps);
+    updateProgress();
+  }
+
+  function validateStep(step) {
+    const stepEl = document.getElementById(`step-${step}`);
+    const requiredInputs = stepEl.querySelectorAll('input[required], select[required], textarea[required]');
+    for (let input of requiredInputs) {
+      if (!input.value.trim()) {
+        input.focus();
+        input.style.borderColor = '#ef4444';
+        setTimeout(() => input.style.borderColor = '', 3000);
+        return false;
+      }
+    }
+    return true;
+  }
+
+  document.getElementById('next-btn').addEventListener('click', () => {
+    if (validateStep(currentStep) && currentStep<totalSteps) { currentStep++; showStep(currentStep); }
+  });
+  document.getElementById('prev-btn').addEventListener('click', () => { if(currentStep>1){currentStep--;showStep(currentStep);} });
+
+  // Submit pitch form
+  document.getElementById('pitch-form').addEventListener('submit', async e => {
+    e.preventDefault();
+    if(!validateStep(currentStep)) return;
+
+    const formData = new FormData(e.target);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const res = await fetch('/api/submit-pitch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+      const result = await res.json();
+
+      if(result.success){
+        document.getElementById('pitch-form').style.display = 'none';
+        document.getElementById('success-message').classList.remove('hidden');
+      } else {
+        alert(result.message || "Submission failed");
+      }
+    } catch (err) {
+      console.error(err);
+      alert("An error occurred. Please try again.");
+    }
+  });
+
+  showStep(1);
+</script>
+
+</body>
+</html>

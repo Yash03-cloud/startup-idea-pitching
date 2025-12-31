@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About - PitchDeck</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Animated gradient background */
+    body {
+      background: linear-gradient(-45deg, #1a1a1a, #2e1065, #0f172a, #1e293b);
+      background-size: 400% 400%;
+      animation: gradientShift 15s ease infinite;
+      color: #f3f4f6;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    main {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(10px);
+      border-radius: 1rem;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
+      margin-top: 3rem;
+      margin-bottom: 3rem;
+      padding: 2rem;
+    }
+
+    h1, h2 {
+      color: #fff;
+    }
+
+    p, li {
+      color: #e5e7eb;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="bg-gray-900 text-white p-4 text-2xl font-bold text-center shadow-lg">
+    PitchDeck
+  </header>
+
+  <!-- Main Content -->
+  <main class="p-8 space-y-6 max-w-5xl mx-auto">
+    <h1 class="text-4xl font-bold mb-4 text-center">About PitchDeck</h1>
+    
+    <p class="text-lg text-gray-200 leading-relaxed">
+      PitchHub is a comprehensive platform designed to bridge the gap between entrepreneurs, mentors, and investors. 
+      Our goal is to empower startups by providing the tools, resources, and connections they need to thrive in a competitive market.
+    </p>
+    
+    <h2 class="text-2xl font-semibold mt-6 mb-2">Our Mission</h2>
+    <p>
+      Our mission is to create a vibrant ecosystem where startups can showcase their innovative ideas, receive mentorship from experienced professionals, 
+      and secure funding from interested investors. We believe in nurturing entrepreneurship to drive innovation and economic growth.
+    </p>
+    
+    <h2 class="text-2xl font-semibold mt-6 mb-2">Who We Serve</h2>
+    <ul class="list-disc ml-6 space-y-2">
+      <li><strong>Entrepreneurs:</strong> Pitch your ideas, gain visibility, and connect with investors and mentors.</li>
+      <li><strong>Mentors:</strong> Share your expertise, guide emerging startups, and help shape the next generation of successful companies.</li>
+      <li><strong>Investors:</strong> Discover promising startups, evaluate pitches, and invest in high-potential ventures.</li>
+    </ul>
+
+    <h2 class="text-2xl font-semibold mt-6 mb-2">Key Features</h2>
+    <ul class="list-disc ml-6 space-y-2">
+      <li>📈 Startup Pitch Submission</li>
+      <li>🤝 Mentor Connect</li>
+      <li>💼 Investor Matching</li>
+      <li>📊 Analytics & Insights</li>
+      <li>🛠 Resources & Workshops</li>
+    </ul>
+
+    <h2 class="text-2xl font-semibold mt-6 mb-2">Why Choose PitchDeck?</h2>
+    <p>
+      We provide a trusted and transparent platform that ensures startups get the right exposure, mentors can make a meaningful impact, 
+      and investors find credible opportunities. PitchDeck is your gateway to building strong networks, scaling innovative ideas, and achieving success.
+    </p>
+  </main>
+
+  <!-- Footer -->
+  <footer class="bg-gray-900 text-white py-8 mt-auto">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row justify-between items-center space-y-6 md:space-y-0">
+        
+        <!-- Logo -->
+        <div class="text-2xl font-bold">
+          PitchDeck
+        </div>
+        
+        <!-- Navigation -->
+        <div class="flex space-x-6 text-gray-300">
+          <a href="index.html" target="_blank" class="hover:text-indigo-400 transition">Home</a>
+          <a href="about.html" target="_blank" class="hover:text-indigo-400 transition">About</a>
+          <a href="services.html" target="_blank" class="hover:text-indigo-400 transition">Services</a>
+          <a href="contact.html" target="_blank" class="hover:text-indigo-400 transition">Contact</a>
+        </div>
+        
+        <!-- Social Icons -->
+        <div class="flex space-x-4">
+          <a href="#" class="hover:text-indigo-400 transition"><i class="fab fa-facebook"></i></a>
+          <a href="#" class="hover:text-indigo-400 transition"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="hover:text-indigo-400 transition"><i class="fab fa-linkedin"></i></a>
+        </div>
+      </div>
+
+      <!-- Copyright -->
+      <div class="mt-6 text-center text-gray-400 text-sm">
+        © 2025 PitchDeck. All rights reserved.
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>

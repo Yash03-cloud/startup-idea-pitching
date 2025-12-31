@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Purple-Pink-Blue Chat</title>
+<script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="w-screen h-screen overflow-hidden">
+
+<!-- Full-screen gradient background -->
+<!-- Full-screen background image with gradient overlay -->
+<div class="absolute inset-0">
+  <!-- Background image -->
+ <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=1950&q=80" 
+     alt="background" class="w-full h-full object-cover" />
+
+    
+
+  <!-- Gradient overlay -->
+  
+</div>
+
+
+<!-- Floating blurred shapes -->
+<div class="absolute top-10 left-10 w-96 h-96 bg-purple-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+<div class="absolute bottom-20 right-10 w-[30rem] h-[30rem] bg-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+<div class="absolute top-1/2 left-1/2 w-[40rem] h-[40rem] bg-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse"></div>
+
+<!-- Chat container -->
+<div class="relative z-10 w-full h-full flex flex-col">
+
+  <!-- Sleek Minimal Header -->
+<header class="backdrop-blur-md bg-black/40 border-b border-white/10 
+               flex items-center justify-between px-5 py-3 sticky top-0 z-20 shadow-sm">
+  <h2 class="text-white text-lg font-semibold tracking-wide flex items-center space-x-2">
+    <span class="text-pink-400 text-xl">💬</span>
+    <span>Startup Chat</span>
+  </h2>
+
+  <button onclick="window.location.href='index.html'" 
+    class="text-sm bg-gradient-to-r from-pink-500 to-purple-600 
+           text-white px-3 py-1.5 rounded-md shadow-md 
+           hover:from-purple-600 hover:to-pink-500 hover:scale-105
+           transition-all duration-300">
+    ← Back
+  </button>
+</header>
+
+
+  <!-- Messages area -->
+  <div id="chatWindow" class="flex-1 p-6 overflow-y-auto text-lg text-white space-y-3 bg-black/20">
+    <!-- Chat messages will appear here -->
+  </div>
+
+  <!-- Typing indicator -->
+  <div id="typing" class="px-6 pb-2 text-sm text-gray-200 hidden">🤖 Bot is typing...</div>
+
+  <!-- Input -->
+  <form id="chatForm" class="flex border-t border-gray-600 bg-black/50 backdrop-blur-md sticky bottom-0 z-20">
+    <input id="chatInput" type="text" placeholder="Type your message..."
+      class="flex-1 p-4 text-lg bg-transparent placeholder-gray-300 text-white focus:outline-none focus:ring-2 focus:ring-pink-400" />
+    <button class="bg-pink-500 text-white px-6 text-lg hover:bg-pink-600 transition-colors">Send</button>
+  </form>
+</div>
+
+<script>
+// Static in-browser chatbot using the dataset at /data/chatbot_dataset.json
+let CHATBOT_DATA = null;
+const chatForm = document.getElementById("chatForm");
+const chatInput = document.getElementById("chatInput");
+const chatWindow = document.getElementById("chatWindow");
+const typing = document.getElementById("typing");
+
+async function loadDataset() {
+  try {
+    const r = await fetch('/data/chatbot_dataset.json');
+    CHATBOT_DATA = await r.json();
+  } catch (err) {
+    console.error('Failed to load chatbot dataset:', err);
+    CHATBOT_DATA = { intents: [] };
+  }
+}
+
+function tokenize(text) {
+  return (text.match(/\w+/g) || []).map(t => t.toLowerCase());
+}
+
+function matchIntent(message) {
+  const text = String(message || '').toLowerCase();
+  const tokens = tokenize(text);
+  let best = { intent: null, score: 0 };
+
+  for (const intent of (CHATBOT_DATA.intents || [])) {
+    let score = 0;
+    if (!intent.keywords) continue;
+
+    for (const kw of intent.keywords) {
+      if (!kw) continue;
+      const k = kw.toLowerCase();
+      if (k.includes(' ')) {
+        if (text.includes(k)) score += k.split(' ').length * 2;
+      } else {
+        if (tokens.includes(k)) score += 1;
+      }
+    }
+
+    if (text.includes(intent.id)) score += 1;
+
+    if (score > best.score) best = { intent, score };
+  }
+
+  let matched = best.intent;
+  if (!matched || best.score <= 0) {
+    matched = (CHATBOT_DATA.intents || []).find(i => i.id === 'fallback') || { responses: ["Sorry, I don't understand."] };
+  }
+
+  const responses = matched.responses || ["Sorry, I don't understand."];
+  const reply = responses[Math.floor(Math.random() * responses.length)];
+  const confidence = Math.min(1, best.score / 5);
+  return { reply, intent: matched.id, confidence };
+}
+
+chatForm.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const msg = chatInput.value.trim();
+  if (!msg) return;
+
+  // User bubble
+  chatWindow.innerHTML += `
+    <div class="flex justify-end">
+      <div class="bg-blue-500 text-white px-4 py-2 rounded-2xl max-w-[70%] shadow-lg">
+        <b>You:</b> ${msg}
+      </div>
+    </div>
+  `;
+  chatInput.value = "";
+  typing.classList.remove("hidden");
+  chatWindow.scrollTop = chatWindow.scrollHeight;
+
+  // Ensure dataset loaded
+  if (!CHATBOT_DATA) await loadDataset();
+
+  const result = matchIntent(msg);
+
+  // Simulate typing delay
+  setTimeout(() => {
+    typing.classList.add("hidden");
+    chatWindow.innerHTML += `
+      <div class="flex justify-start">
+        <div class="bg-pink-500 text-white px-4 py-2 rounded-2xl max-w-[70%] shadow-lg">
+          <b>Bot:</b> ${result.reply}
+          <div class="text-xs opacity-70 mt-1">intent: ${result.intent} • confidence: ${Math.round(result.confidence*100)}%</div>
+        </div>
+      </div>
+    `;
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+  }, 400 + Math.min(1200, Math.random() * 800));
+});
+
+// Preload dataset
+loadDataset();
+</script>
+
+</body>
+</html>
