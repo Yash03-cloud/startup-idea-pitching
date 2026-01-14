@@ -406,7 +406,7 @@
 
   async function loadStartups() {
     try {
-      const res = await fetch("http://localhost:5000/api/pitches?status=accepted");
+      const res = await fetch("https://startup-idea-pitching.onrender.com/api/pitches?status=accepted");
       allPitches = await res.json();
 
       const section = document.getElementById("startupGrid");
