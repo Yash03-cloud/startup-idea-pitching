@@ -22,7 +22,7 @@ app.use(express.static(path.join(__dirname)));
 
 // ---------------------- DATABASE ----------------------
 mongoose
-  .connect("mongodb://localhost:27017/")
+  .connect("mongodb+srv://yashshende205_db_user:ZRt43MK1o0pb4doq@cluster1.c2eapo6.mongodb.net/")
   .then(() => console.log("✅ MongoDB Connected"))
   .catch(err => console.log("❌ MongoDB Connection Error:", err));
 
