@@ -297,6 +297,21 @@
     }
   });
 
+  // Fetch accepted pitches
+  async function fetchAcceptedPitches() {
+    try {
+      const res = await fetch("https://startup-idea-pitching.onrender.com/api/pitches?status=accepted");
+      const pitches = await res.json();
+      console.log('Accepted pitches:', pitches);
+      // You can add logic here to display or use the accepted pitches
+    } catch (err) {
+      console.error('Error fetching accepted pitches:', err);
+    }
+  }
+
+  // Call the function when the page loads
+  fetchAcceptedPitches();
+
   showStep(1);
 </script>
 
