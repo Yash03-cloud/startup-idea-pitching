@@ -586,7 +586,7 @@ document.getElementById("demoForm").addEventListener("submit", async (e) => {
 
   const data = Object.fromEntries(new FormData(e.target).entries());
 
-  const res = await fetch("http://localhost:5000/api/demo-register", {
+  const res = await fetch("https://startup-idea-pitching.onrender.com/api/demo-register", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify(data)
