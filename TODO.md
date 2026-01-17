@@ -1,7 +1,0 @@
-- [ ] Remove CHATBOT_DATA variable
-- [ ] Remove loadDataset function
-- [ ] Remove tokenize function
-- [ ] Remove matchIntent function
-- [ ] Add new async function for OpenRouter API call
-- [ ] Update the submit handler to use the new API function
-- [ ] Update the bot message HTML to remove intent and confidence
